@@ -37,19 +37,21 @@ local function JXJZ_fake_script() -- WorldsWorstGodmode.Client
 	script.Parent.Note.MouseButton1Click:Connect(function()
 		script.Parent.Lol:Play()
 		script.Parent.Lol.Ended:Wait()
-		
-		local oldPos
 	
-		while true do
-			wait(0)
-			if game.Players.LocalPlayer.Character.Humanoid.Health <= 10 then
-				oldPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-				game:GetService("ReplicatedStorage").Events.Spawn:FireServer()
-				workspace:WaitForChild(game.Players.LocalPlayer.Name)
-				wait()
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldPos
+		spawn(function()
+			local oldPos
+			
+			while true do
+				wait(0)
+				if game.Players.LocalPlayer.Character.Humanoid.Health <= 10 then
+					oldPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+					game:GetService("ReplicatedStorage").Events.Spawn:FireServer()
+					workspace:WaitForChild(game.Players.LocalPlayer.Name)
+					wait()
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldPos
+				end
 			end
-		end
+		end)
 		
 		script.Parent:Destroy()
 	end)
